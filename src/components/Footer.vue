@@ -3,8 +3,6 @@
     <Transition name="fade" mode="out-in">
       <div v-if="!store.playerState || !store.playerLrcShow" class="power">
         <span>
-          <a href="/galgame.html" class="copyright-link">Copyright</a>
-
           <span v-if="startYear < fullYear" class="site-start">
             {{ startYear }} -
           </span>
