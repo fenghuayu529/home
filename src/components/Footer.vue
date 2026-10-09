@@ -3,14 +3,15 @@
     <Transition name="fade" mode="out-in">
       <div v-if="!store.playerState || !store.playerLrcShow" class="power">
         <span>
-          <span :class="startYear < fullYear ? 'c-hidden' : 'hidden'">Copyright&nbsp;</span>
-          <a href="/galgame.html" class="copyright-link">&copy;</a>
+          <a href="/galgame.html" class="copyright-link">Copyright</a>
+
           <span v-if="startYear < fullYear" class="site-start">
-            {{ startYear }}
-            -
+            {{ startYear }} -
           </span>
+
           {{ fullYear }}
-          <!-- 以下信息请不要修改哦 -->
+
+          <!-- 以下信息请不要修改 -->
           <span class="hidden">
             &amp;&nbsp;Made&nbsp;by
             <a :href="config.github" target="_blank">
@@ -36,10 +37,12 @@
         <Transition name="fade" mode="out-in">
           <div class="lrc-all" :key="store.getPlayerLrc">
             <music-one theme="filled" size="18" fill="#efefef" />
+
             <span
               class="lrc-text text-hidden"
               v-html="store.getPlayerLrc"
             />
+
             <music-one theme="filled" size="18" fill="#efefef" />
           </div>
         </Transition>
@@ -49,15 +52,16 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 import { MusicOne } from "@icon-park/vue-next";
 import { mainStore } from "@/store";
 import config from "@/../package.json";
 
 const store = mainStore();
+
 const fullYear = new Date().getFullYear();
 
-// 加载配置数据
-// const siteStartDate = ref(import.meta.env.VITE_SITE_START);
+// 加载站点配置
 const startYear = ref(
   import.meta.env.VITE_SITE_START?.length >= 4
     ? import.meta.env.VITE_SITE_START.substring(0, 4)
@@ -72,7 +76,6 @@ const siteUrl = computed(() => {
 
   if (!url) return "https://www.imsyy.top";
 
-  // 判断协议前缀
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     return "//" + url;
   }
@@ -97,15 +100,17 @@ const siteUrl = computed(() => {
   word-break: keep-all;
   white-space: nowrap;
 
-  // © 超链接样式
+  // Copyright 超链接样式
   .copyright-link {
     color: inherit;
     text-decoration: none;
     cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
 
-    &:hover {
-      opacity: 0.7;
-    }
+  // 鼠标悬停效果
+  .copyright-link:hover {
+    opacity: 0.7;
   }
 
   .power {
