@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>
+// 账号：1，密码：QQ3421905552
+(function(){
+    const correctUser = "1";
+    const correctPwd = "QQ3421905552";
+    const loginStr = prompt("请输入账号|密码，使用|分隔（例：1|QQ3421905552）");
+    if(!loginStr){
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px'>未输入账号密码，禁止访问</h2>";
+        throw new Error("access deny");
+    }
+    const arr = loginStr.split("|");
+    const u = (arr[0]||"").trim();
+    const p = (arr[1]||"").trim();
+    if(u!==correctUser || p!==correctPwd){
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px'>账号或密码错误，禁止访问</h2>";
+        throw new Error("access deny");
+    }
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>迅雷搜：唐氏全库</title>
